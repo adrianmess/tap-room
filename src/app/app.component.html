@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{title}}
+  </h1>
+  <img width="300" alt="Angular Logo" src="/assets/recipes-logo.png">
+</div>
+
+<h2>Recipes: </h2>
+
+
+<ul *ngFor = "let currentRecipe of recipe">
+  <li >
+    <span id='title'>{{currentRecipe.title}} </span>
+    <ul>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card bg-light text-dark">
+            <div class="card-body">
+              <li><p>Ingrediants:</p>
+                <ol>
+                  <li><span id='ingrediants'>{{currentRecipe.ingrediants}}</span></li>
+
+                </ol>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card bg-info text-dark">
+            <div class="card-body">
+              <li> <p>Directions:</p>
+                <span id="recipe"> {{currentRecipe.directions}}</span></li>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ul>
+  </li>
+</ul>
