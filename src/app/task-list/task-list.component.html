@@ -1,0 +1,41 @@
+<h2>Tasks: </h2>
+<select (change)="onChange($event.target.value)">
+  <option value="allTasks">All Tasks</option>
+  <option value="completedTasks">Completed Tasks</option>
+  <option value="incompleteTasks" selected="selected">Incomplete Tasks</option>
+</select>
+
+
+<ul>
+  <li [class]="priorityColor(currentTask)" *ngFor="let currentTask of childTaskList | completeness:filterByCompleteness">{{currentTask.description}} {{currentTask.priority}}
+    <input *ngIf="currentTask.done === true" type="checkbox" checked (click)="toggleDone(currentTask, false)"/>
+    <input *ngIf="currentTask.done === false" type="checkbox" (click)="toggleDone(currentTask, true)"/>
+    <button (click)="editButtonClicked(currentTask)">Edit!</button>
+  </li>
+</ul>
+<!-- <ul>
+  <li [class]="priorityColor(currentTask)" *ngFor="let currentTask of childTaskList">{{currentTask.description}} <button (click)="editTask(currentTask)">Edit!</button></li>
+</ul> -->
+
+<!-- <ul>
+  <li [class]="priorityColor(currentTask)" *ngFor="let currentTask of childTaskList | completeness">{{currentTask.description}} <button (click)="editButtonClicked(currentTask)">Edit!</button></li>
+</ul> -->
+<!--
+<ul  *ngFor = "let currentTask of childTaskList">
+  <li [class]="priorityColor(currentTask)">
+    <span id='title'>{{currentTask.title}} </span>
+    <button (click)="editButtonClicked(currentTask)">Edit!</button>
+    <ul>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card bg-light text-dark">
+            <div class="card-body">
+              <p>Description: </p>
+              <li><span id='description'>{{currentTask.description}}</span></li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul>
+  </li>
+</ul> -->

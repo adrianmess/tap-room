@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Recipe } from './models/recipe.model';
+import { Task } from './models/task.model';
 
 @Component({
   selector: 'app-root',
@@ -7,37 +7,32 @@ import { Recipe } from './models/recipe.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Welcome to Recipe Box';
+  titleFocus: string = 'Welcome to the Tap Room';
 
-  sushiDirections = 'Place your desired ingredients onto the rice. I’ve got salmon, avocado, and cream cheese (I know, I know. But Philly-style rolls are my favorite';
+  currentFocus: string = 'Angular Homework';
+   currentTime = new Date();
+   month: number = this.currentTime.getMonth() + 1;
+   day: number = this.currentTime.getDate();
+   year: number = this.currentTime.getFullYear();
+   selectedTask = null;
 
-  sushiRecipe = `* 6 sheets sushi seaweed` + ' * 1 batch prepared sushi rice' + ' * 1/2 lb sushi-grade raw salmon, or desired raw fish of choice.' + ' * 1 avocado, sliced' + ' * soy sauce, for serving';
+   masterTaskList: Task[] = [
+     // new Task('Task 1', '',  '1'),
+     // new Task('Task 2', '', '2'),
+     // new Task('Task 3', '', '3')
+   ];
 
-  recipe: Recipe[] = [
-    new Recipe('Sushi', this.sushiRecipe, this.sushiDirections, '1'),
-    new Recipe('Stuffed Peppers', ['peppers'], ['bake'], '2'),
-    new Recipe('Speghetti', ['noodles'], ['boil'], '3')
-  ];
+   editTask(clickedTask){
+     this.selectedTask = clickedTask;
+   }
 
-  // selectedRecipe: Recipe = this.recipe;
+   finishedEditing() {
+     this.selectedTask = null;
+   }
 
-  selectedRecipe = null;
-
-  finishedEditing() {
-    this.selectedRecipe = null;
+   addTask(newTask: Task) {
+    this.masterTaskList.push(newTask);
   }
-  editRecipe(clickedRecipe){
-    this.selectedRecipe = clickedRecipe;;
-  }
-
-  priorityColor(currentRecipe){
-      if (currentRecipe.priority === '3'){
-        return "bg-danger";
-      } else if (currentRecipe.priority === '2') {
-        return  "bg-warning";
-      } else {
-        return "bg-info";
-      }
-    }
-
+  // selectedTask: Task = this.task;
+  // selectedTask = null;
 }
